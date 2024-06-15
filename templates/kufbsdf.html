@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<!-- compass-->
+<style>
+.pl {
+  display: block;
+  width: 9.375em;
+  height: 9.375em;
+}
+
+.pl__arrows,
+.pl__ring-rotate,
+.pl__ring-stroke,
+.pl__tick {
+  animation-duration: 2s;
+  animation-timing-function: linear;
+
+}
+
+.pl__arrows {
+  animation-name: arrows42;
+  transform: rotate(180deg);
+  transform-origin: 16px 52px;
+}
+
+.pl__ring-rotate,
+.pl__ring-stroke {
+  transform-origin: 80px 80px;
+}
+
+.pl__ring-rotate {
+  animation-name: ringRotate42;
+}
+
+.pl__ring-stroke {
+  animation-name: ringStroke42;
+  transform: rotate(-45deg);
+}
+
+.pl__tick {
+  animation-name: tick42;
+}
+
+.pl__tick:nth-child(2) {
+  animation-delay: -1.75s;
+}
+
+.pl__tick:nth-child(3) {
+  animation-delay: -1.5s;
+}
+
+.pl__tick:nth-child(4) {
+  animation-delay: -1.25s;
+}
+
+.pl__tick:nth-child(5) {
+  animation-delay: -1s;
+}
+
+.pl__tick:nth-child(6) {
+  animation-delay: -0.75s;
+}
+
+.pl__tick:nth-child(7) {
+  animation-delay: -0.5s;
+}
+
+.pl__tick:nth-child(8) {
+  animation-delay: -0.25s;
+}
+
+/* Animations */
+
+
+@keyframes ringRotate42 {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(720deg);
+  }
+}
+
+@keyframes ringStroke42 {
+  from,
+	to {
+    stroke-dashoffset: 452;
+    transform: rotate(-45deg);
+  }
+
+  50% {
+    stroke-dashoffset: 169.5;
+    transform: rotate(-180deg);
+  }
+}
+
+@keyframes tick42 {
+  from,
+	3%,
+	47%,
+	to {
+    stroke-dashoffset: -12;
+  }
+
+  14%,
+	36% {
+    stroke-dashoffset: 0;
+  }
+}
+</style>
+<!--  card styles-->
+  <style>
+    #card1 {
+    position:relative;
+    top:100px;
+    left:25px;
+      width: 626px;
+      height: 353px;
+      background-color:white;
+      background-image:url("https://www.shutterstock.com/shutterstock/videos/1106682599/thumb/1.jpg?ip=x480");
+      background-size: cover;
+      background-position: center;
+      color: white; /* Set text color to white or any other color for better visibility */
+      text-align:center;
+    }
+    #videoStream{
+    position:relative;
+    top:1px;
+    left:1px;
+    }
+  #card2{
+    position:relative;
+    display: flex;
+    left:680px;
+    bottom:210px;
+    width: 800px;
+    height: 500px;
+    background-color:#222032;
+    }
+    #card3{
+    position:relative;
+    left:145px;
+    bottom:420px;
+    width: 417.3px;
+    height: 234.66px;
+    background-color:black;
+display:flex;
+justify-content:center;
+align-items:center;
+    }
+    #speed{
+    position:relative;
+
+    text-align:center;
+    top:90px;
+    }
+  </style>
+<!--  button b1 and b2-->
+  <style>
+#b1 {
+  --green: #1BFD9C;
+  font-size: 15px;
+  padding: 0.4em 8.7em;
+  letter-spacing: 0.06em;
+  position: relative;
+  left:680px;
+  bottom:210px;
+  font-family: inherit;
+  border-radius: 0.6em;
+  overflow: hidden;
+  transition: all 0.3s;
+  line-height: 1.4em;
+  border: 2px solid var(--green);
+  background: linear-gradient(to right, rgba(27, 253, 156, 0.1) 1%, transparent 40%,transparent 60% , rgba(27, 253, 156, 0.1) 100%);
+  color: var(--green);
+  box-shadow: inset 0 0 10px rgba(27, 253, 156, 0.4), 0 0 9px 3px rgba(27, 253, 156, 0.1);
+}
+
+#b1:hover {
+  color: #82ffc9;
+  box-shadow: inset 0 0 10px rgba(27, 253, 156, 0.6), 0 0 9px 3px rgba(27, 253, 156, 0.2);
+}
+
+#b1:before {
+  content: "";
+  position: absolute;
+  left: -4em;
+  width: 4em;
+  height: 100%;
+  top: 0;
+  transition: transform .4s ease-in-out;
+  background: linear-gradient(to right, transparent 1%, rgba(27, 253, 156, 0.1) 40%,rgba(27, 253, 156, 0.1) 60% , transparent 100%);
+}
+
+#b1:hover:before {
+  transform: translateX(15em);
+}
+#b2 {
+  --green: #1BFD9C;
+  font-size: 15px;
+  padding: 0.4em 8.7em;
+  letter-spacing: 0.06em;
+  position: relative;
+  left:680px;
+  bottom:210px;
+  font-family: inherit;
+  border-radius: 0.6em;
+  overflow: hidden;
+  transition: all 0.3s;
+  line-height: 1.4em;
+  border: 2px solid var(--green);
+  background: linear-gradient(to right, rgba(27, 253, 156, 0.1) 1%, transparent 40%,transparent 60% , rgba(27, 253, 156, 0.1) 100%);
+  color: var(--green);
+  box-shadow: inset 0 0 10px rgba(27, 253, 156, 0.4), 0 0 9px 3px rgba(27, 253, 156, 0.1);
+}
+
+#b2:hover {
+  color: #82ffc9;
+  box-shadow: inset 0 0 10px rgba(27, 253, 156, 0.6), 0 0 9px 3px rgba(27, 253, 156, 0.2);
+}
+
+#b2:before {
+  content: "";
+  position: absolute;
+  left: -4em;
+  width: 4em;
+  height: 100%;
+  top: 0;
+  transition: transform .4s ease-in-out;
+  background: linear-gradient(to right, transparent 1%, rgba(27, 253, 156, 0.1) 40%,rgba(27, 253, 156, 0.1) 60% , transparent 100%);
+}
+
+#b2:hover:before {
+  transform: translateX(15em);
+}
+  </style>
+<!--mic button style-->
+ <style>
+   .box {
+	position: absolute;
+	display:none;
+  top: 30%;
+  left: 50%;
+}
+
+.object {
+  display: flex;
+	flex: 0 1 100%;
+  justify-content: center;
+  align-items: center;
+  align-content: stretch;
+}
+
+.outline {
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	border: 8px solid #B5A4A4;
+  animation: pulse 3s;
+	animation-timing-function: ease-out;
+	animation-iteration-count: infinite;
+	position: absolute;
+}
+
+#circlein {
+	width: 120px;
+	height: 120px;
+	border-radius: 50%;
+	background: #50CDDD;
+	box-shadow: 0px 0px 80px #0084F9;
+	position: absolute;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+		border: 65px solid #0B3082;
+  }
+  50% {
+		border: solid #A3FFC2;
+		opacity: 0.8;
+  }
+
+	 90% {
+    transform: scale(3.2);
+		opacity: 0.2;
+		border: 3px solid #2E3CFF;
+  }
+  100% {
+    transform: scale(3.3);
+		opacity: 0;
+		border: 1px solid #7A89FF;
+  }
+}
+
+#delayed {
+	animation-delay: 1.5s;
+}
+
+#startButton {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	background: #6BD6E1;
+	box-shadow: 0px -2px 15px #E0FF94;
+	position: absolute;
+}
+
+.mic-icon {
+	height: 60px;
+	position: absolute;
+	margin: 21px;
+}
+
+        .outline {
+            display: none; /* Hide outlines by default */
+        }
+ </style>
+<!--frequency bar container style    -->
+<style>
+         .frequency-bar-container {
+         position:relative;
+         top:300px;
+      display: none;
+      flex-direction: column;
+      text-align: center;
+      margin-top: 10px;
+      padding: 50px;
+    }
+    #frequencyCanvas{
+    position:relative;
+    bottom:52px;
+    }
+    #stopButton {
+    display:none;
+    position:relative;
+    bottom:48px;
+    left:320px;
+      }
+     #transcription{
+     position: relative;
+     bottom:40px;
+     display:none;
+     }
+    </style>
+<!--    keyword-->
+    <style>
+        #puku {
+  font-family: Helvetica, Arial;
+  text-align: center;
+  color: white;
+  margin-top:15px;
+  margin-bottom:15px;
+}
+.arrow-key-container {
+  display: inline-block;
+  text-align: center;
+  transform: translate3d(0,0,0);
+  margin-bottom:7px;
+}
+.arrow-key {
+  align-items: center;
+  background: #1BFD9C;
+  border-radius: 6px;
+  box-shadow: -1px 1px 0 #999, -2px 2px 0 #999, -3px 3px 0 #999, -4px 4px 0 #999;
+  color: #fff;
+  display: inline-flex;
+  font-size: 30px;
+  font-weight: bold;
+  height: 75px;
+  justify-content: center;
+  margin: 5px;
+  transform: translate3d(0, 0, 0);
+  transition: box-shadow .1s linear, transform .1s linear;
+  width: 75px;
+  &:active,&.press {
+    box-shadow: 0px 0px 0 #999, 0px 0px 0 #999, 0px 0px 0 #999, -1px 1px 0 #999;
+    transform: translate3d(-3px, 3px, 0);
+  }
+  &.left:before {
+    content: "\2190";
+  }
+  &.up:before {
+    content: "\2191";
+  }
+  &.down:before {
+    content: "\2193";
+  }
+  &.right:before {
+    content: "\2192";
+  }
+  &.x:before {
+    content: "x";
+  }
+  &.z:before {
+    content: "z";
+  }
+}
+.arrow-key2{
+  display: inline-block;
+  margin-top:20px;
+  margin-left:30px;
+}
+.h21 {
+    display: inline-block;
+    margin: 0;
+    color:white;
+  }
+  .mancon{
+  display:none;
+  }
+    </style>
+</head>
+<body style="background-color:black;">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">About us</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="card" id="card1" >
+<!--    <img id="videoStream" src="http://192.168.1.14:81/stream" crossorigin="">-->
+    <img style="display: block;-webkit-user-select: none;margin: auto;background-color: hsl(0, 0%, 25%);" id="videoStream" src="http://192.168.1.14:81/stream" alt="Refreshing Image" width="320" height="240">
+</div>
+<button id="b1" onclick="VC();"> VOICE  CONTROL
+</button>
+<button id="b2" onclick="MC()"> MANUAL CONTROL
+</button>9
+<div class="card" id="card2">
+<div class="arrow-key-container">
+    <h2 id="puku">Use Arrow Keys</h2><br>
+  <div class="arrow-key up" data-key="38"></div><br>
+  <div class="arrow-key left" data-key="37"></div>
+  <div class="arrow-key down" data-key="40"></div>
+  <div class="arrow-key right" data-key="39"></div>
+</div>
+    <div class="arrow-key2">
+<div class="arrow-key z" data-key="90"></div>
+  <h4 class="h21">Speed UP</h4><br><br>
+  <div class="arrow-key x" data-key="88"></div>
+  <h4 class="h21">Speed Down</h4>
+ </div>
+   <div class="box">
+  <div class="object">
+
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <div class="object"  >
+            <div class="outline" id="outline1"></div>
+            <div class="outline" id="outline2"></div>
+            <div class="button" id="startButton" onclick="toggleFrequencyBar(); toggleOutline(); speakGreeting();">
+                <!-- Your SVG icon code -->
+                <svg class="mic-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:link="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve" style="fill:#1E2D70">
+                    <g>
+                        <path d="M500,683.8c84.6,0,153.1-68.6,153.1-153.1V163.1C653.1,78.6,584.6,10,500,10c-84.6,0-153.1,68.6-153.1,153.1v367.5C346.9,615.2,415.4,683.8,500,683.8z M714.4,438.8v91.9C714.4,649,618.4,745,500,745c-118.4,0-214.4-96-214.4-214.4v-91.9h-61.3v91.9c0,141.9,107.2,258.7,245,273.9v124.2H346.9V990h306.3v-61.3H530.6V804.5c137.8-15.2,245-132.1,245-273.9v-91.9H714.4z"/>
+                    </g>
+                </svg>
+            </div>
+        </div>
+      </div>
+</div>
+</div>
+   <div class="frequency-bar-container">
+      <div>
+      <canvas id="frequencyCanvas" width="400" height="65"></canvas>
+        </div>
+      <button class="btn btn-danger stop-button my-1" id="stopButton" onclick="toggleFrequencyBar(); ">Stop</button>
+      <div id="transcription" style="color: white;"> hello</div>
+    </div>
+</div>
+<div class="card" id="card3">
+       		<svg class="pl" viewBox="0 0 160 160" width="160px" height="160px" xmlns="http://www.w3.org/2000/svg">
+			<defs>
+				<linearGradient id="grad" x1="0" y1="0" x2="0" y2="1">
+					<stop offset="0%" stop-color="#000"></stop>
+					<stop offset="100%" stop-color="#fff"></stop>
+				</linearGradient>
+				<mask id="mask1">
+					<rect x="0" y="0" width="160" height="160" fill="url(#grad)"></rect>
+				</mask>
+	 			<mask id="mask2">
+					<rect x="28" y="28" width="104" height="104" fill="url(#grad)"></rect>
+				</mask>
+			</defs>
+
+			<g>
+				<g class="pl__ring-rotate">
+					<circle class="pl__ring-stroke" cx="80" cy="80" r="72" fill="none" stroke="hsl(223,90%,55%)" stroke-width="16" stroke-dasharray="452.39 452.39" stroke-dashoffset="452" stroke-linecap="round" transform="rotate(-45,80,80)"></circle>
+				</g>
+			</g>
+			<g mask="url(#mask1)">
+				<g class="pl__ring-rotate">
+					<circle class="pl__ring-stroke" cx="80" cy="80" r="72" fill="none" stroke="hsl(193,90%,55%)" stroke-width="16" stroke-dasharray="452.39 452.39" stroke-dashoffset="452" stroke-linecap="round" transform="rotate(-45,80,80)"></circle>
+				</g>
+			</g>
+
+			<g>
+				<g stroke-width="4" stroke-dasharray="12 12" stroke-dashoffset="12" stroke-linecap="round" transform="translate(80,80)">
+					<polyline class="pl__tick" stroke="hsl(223,10%,90%)" points="0,2 0,14" transform="rotate(-135,0,0) translate(0,40)"></polyline>
+					<polyline class="pl__tick" stroke="hsl(223,10%,90%)" points="0,2 0,14" transform="rotate(-90,0,0) translate(0,40)"></polyline>
+					<polyline class="pl__tick" stroke="hsl(223,10%,90%)" points="0,2 0,14" transform="rotate(-45,0,0) translate(0,40)"></polyline>
+					<polyline class="pl__tick" stroke="hsl(223,10%,90%)" points="0,2 0,14" transform="rotate(0,0,0) translate(0,40)"></polyline>
+					<polyline class="pl__tick" stroke="hsl(223,10%,90%)" points="0,2 0,14" transform="rotate(45,0,0) translate(0,40)"></polyline>
+					<polyline class="pl__tick" stroke="hsl(223,10%,90%)" points="0,2 0,14" transform="rotate(90,0,0) translate(0,40)"></polyline>
+					<polyline class="pl__tick" stroke="hsl(223,10%,90%)" points="0,2 0,14" transform="rotate(135,0,0) translate(0,40)"></polyline>
+					<polyline class="pl__tick" stroke="hsl(223,10%,90%)" points="0,2 0,14" transform="rotate(180,0,0) translate(0,40)"></polyline>
+				</g>
+			</g>
+			<g mask="url(#mask1)">
+				<g stroke-width="4" stroke-dasharray="12 12" stroke-dashoffset="12" stroke-linecap="round" transform="translate(80,80)">
+					<polyline class="pl__tick" stroke="hsl(223,90%,80%)" points="0,2 0,14" transform="rotate(-135,0,0) translate(0,40)"></polyline>
+					<polyline class="pl__tick" stroke="hsl(223,90%,80%)" points="0,2 0,14" transform="rotate(-90,0,0) translate(0,40)"></polyline>
+					<polyline class="pl__tick" stroke="hsl(223,90%,80%)" points="0,2 0,14" transform="rotate(-45,0,0) translate(0,40)"></polyline>
+					<polyline class="pl__tick" stroke="hsl(223,90%,80%)" points="0,2 0,14" transform="rotate(0,0,0) translate(0,40)"></polyline>
+					<polyline class="pl__tick" stroke="hsl(223,90%,80%)" points="0,2 0,14" transform="rotate(45,0,0) translate(0,40)"></polyline>
+					<polyline class="pl__tick" stroke="hsl(223,90%,80%)" points="0,2 0,14" transform="rotate(90,0,0) translate(0,40)"></polyline>
+					<polyline class="pl__tick" stroke="hsl(223,90%,80%)" points="0,2 0,14" transform="rotate(135,0,0) translate(0,40)"></polyline>
+					<polyline class="pl__tick" stroke="hsl(223,90%,80%)" points="0,2 0,14" transform="rotate(180,0,0) translate(0,40)"></polyline>
+				</g>
+			</g>
+
+			<g>
+				<g transform="translate(64,28)">
+					<g class="pl__arrows" transform="rotate(45,16,52)">
+						<path fill="hsl(120, 90%, 55%)" d="M17.998,1.506l13.892,43.594c.455,1.426-.56,2.899-1.998,2.899H2.108c-1.437,0-2.452-1.473-1.998-2.899L14.002,1.506c.64-2.008,3.356-2.008,3.996,0Z"></path>
+						<path fill="hsl(223,10%,90%)" d="M14.009,102.499L.109,58.889c-.453-1.421,.559-2.889,1.991-2.889H29.899c1.433,0,2.444,1.468,1.991,2.889l-13.899,43.61c-.638,2.001-3.345,2.001-3.983,0Z"></path>
+					</g>
+				</g>
+			</g>
+			<g mask="url(#mask2)">
+				<g transform="translate(64,28)">
+					<g class="pl__arrows" transform="rotate(45,16,52)">
+						<path fill="green" d="M17.998,1.506l13.892,43.594c.455,1.426-.56,2.899-1.998,2.899H2.108c-1.437,0-2.452-1.473-1.998-2.899L14.002,1.506c.64-2.008,3.356-2.008,3.996,0Z"></path>
+						<path fill="hsl(223,90%,80%)" d="M14.009,102.499L.109,58.889c-.453-1.421,.559-2.889,1.991-2.889H29.899c1.433,0,2.444,1.468,1.991,2.889l-13.899,43.61c-.638,2.001-3.345,2.001-3.983,0Z"></path>
+					</g>
+				</g>
+			</g>
+		</svg>
+    </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!--speak scripts-->
+<script>
+var isSpeaking = false;
+        function speakText(text) {
+       const synth = window.speechSynthesis;
+        const utterance = new SpeechSynthesisUtterance(text);
+
+        // Set the isSpeaking variable when speaking starts
+        utterance.onstart = function() {
+            isSpeaking = true;
+
+            // Mute the microphone when Web Speech API is speaking
+            if (isRecording) {
+                speechRecognition.stop();
+            }
+        };
+
+        // Clear the isSpeaking variable when speaking ends
+        utterance.onend = function() {
+            isSpeaking = false;
+
+            // Unmute the microphone when Web Speech API speaking ends
+            if (isRecording) {
+                speechRecognition.start();
+            }
+        };
+
+        synth.speak(utterance);
+        }
+
+</script>
+<script>
+    function speakGreeting() {
+        speakText("Hello, i am waalli, a robotic vehicle");
+    }
+  </script>
+<!--toggleFrequencyBar-->
+<script>
+    function toggleFrequencyBar() {
+      var frequencyBarContainer = document.querySelector('.frequency-bar-container');
+      var stp = document.getElementById('stopButton');
+      var tp = document.getElementById('transcription');
+      if (frequencyBarContainer.style.display == 'block') {
+        frequencyBarContainer.style.display = 'none';
+        stp.style.display='none'
+        tp.style.display='none'
+      } else {
+        frequencyBarContainer.style.display = 'block';
+        stp.style.display='block'
+        tp.style.display='block'
+      }
+    }
+  </script>
+<!--toggle mv-->
+<script>
+function MC(){
+    var box = document.querySelector('.box');
+    var fbc = document.querySelector('.frequency-bar-container');
+    var kbc1 = document.querySelector('.arrow-key-container');
+    var kbc2 = document.querySelector('.arrow-key2');
+    fbc.style.display='none';
+    box.style.display='none';
+    kbc1.style.display='block';
+    kbc2.style.display='block';
+    }
+function VC(){
+    var box = document.querySelector('.box');
+    var fbc = document.querySelector('.frequency-bar-container');
+    var kbc1 = document.querySelector('.arrow-key-container');
+    var kbc2 = document.querySelector('.arrow-key2');
+    box.style.display='block';
+    kbc1.style.display='none';
+    kbc2.style.display='none';
+    }
+
+</script>
+<!--toggleOutline-->
+<script>
+        function toggleOutline() {
+            var outline1 = document.getElementById('outline1');
+            var outline2 = document.getElementById('outline2');
+
+            // Toggle the visibility of the outline elements
+            outline1.style.display = (outline1.style.display === 'none' || outline1.style.display === '') ? 'block' : 'none';
+            outline2.style.display = (outline2.style.display === 'none' || outline2.style.display === '') ? 'block' : 'none';
+        }
+    </script>
+<!--speech recognition-->
+<script>
+    $(document).ready(function() {
+        const transcriptionElement = document.getElementById('transcription');
+        const startButton = document.getElementById('startButton');
+        const stopButton = document.getElementById('stopButton');
+        const canvas = document.getElementById('frequencyCanvas');
+        const ctx = canvas.getContext('2d');
+        var speechRecognition = new webkitSpeechRecognition();
+        speechRecognition.continuous = true;
+        speechRecognition.interimResults = true;
+        var isRecording = false;
+
+        speechRecognition.onresult = function(event) {
+            let interimTranscript = '';
+            for (let i = event.resultIndex; i < event.results.length; i++) {
+                if (event.results[i].isFinal) {
+                    let finalTranscript = event.results[i][0].transcript;
+                    transcriptionElement.innerHTML = finalTranscript;
+
+                    // Send the finalTranscript to the Flask server for processing
+                    $.ajax({
+                        type: 'POST',
+                        url: '/process_audio',
+                        data: JSON.stringify({ audio: finalTranscript }),
+                        contentType: 'application/json',
+                        success: function(response) {
+                            // Handle the server response
+                            speakText(response);
+                        }
+                    });
+                } else {
+                    interimTranscript += event.results[i][0].transcript;
+                }
+
+             }
+        };
+
+        startButton.addEventListener('click', function() {
+            if (!isRecording) {
+                speechRecognition.start();
+            }
+            isRecording = true;
+        });
+
+        stopButton.addEventListener('click', function() {
+            speechRecognition.stop();
+            isRecording = false;
+        });
+
+        // Optionally, you can add a confirmation dialog before stopping recording
+        window.onbeforeunload = function() {
+            if (isRecording) {
+                return 'Are you sure you want to stop recording?';
+            }
+        };
+    });
+</script>
+<!--visulazie-->
+<script>
+    $(document).ready(function() {
+        const transcriptionElement = document.getElementById('transcription');
+        const startButton = document.getElementById('startButton');
+        const stopButton = document.getElementById('stopButton');
+        const canvas = document.getElementById('frequencyCanvas');
+        const ctx = canvas.getContext('2d');
+        let isRecording = false;
+
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const analyser = audioContext.createAnalyser();
+        analyser.fftSize = 256;
+        const bufferLength = analyser.frequencyBinCount;
+        const dataArray = new Uint8Array(bufferLength);
+
+        navigator.mediaDevices.getUserMedia({ audio: true })
+            .then(function(stream) {
+                const source = audioContext.createMediaStreamSource(stream);
+                source.connect(analyser);
+            })
+            .catch(function(err) {
+                console.error('Error accessing microphone:', err);
+            });
+
+        startButton.addEventListener('click', function() {
+            audioContext.resume().then(function() {
+                if (!isRecording) {
+                speechRecognition.start();
+                }
+                isRecording = true;
+                visualize();
+            });
+        });
+
+        stopButton.addEventListener('click', function() {
+            speechRecognition.stop();
+            isRecording = false;
+        });
+
+        function visualize() {
+         analyser.getByteFrequencyData(dataArray);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const barWidth = (canvas.width / bufferLength) * 2.5;
+        let x = 0;
+
+        for (let i = 0; i < bufferLength; i++) {
+            let barHeight = dataArray[i];
+
+            if (isSpeaking) {
+                // If Web Speech API is speaking, set bar height to a fixed value or adjust as needed
+                barHeight = 50; // Example: Set a fixed height during speech
+            }
+
+            ctx.fillStyle = `#6BD6E1`;
+            ctx.fillRect(x, canvas.height - barHeight / 2, barWidth, barHeight / 2);
+            x += barWidth + 1;
+        }
+
+        requestAnimationFrame(visualize);
+    }
+    // Call the initial visualization
+    visualize();
+    });
+</script>
+<!--keyword control-->
+<script>
+  let keyboardControlActive = false;
+
+document.getElementById('b2').addEventListener('click', function() {
+    keyboardControlActive = true;
+    console.log('Keyboard control activated');
+});
+let keyIsPressed = false;
+document.addEventListener('keydown', function(event) {
+    if (keyboardControlActive && !keyIsPressed) {
+        // Check for arrow keys
+        if (event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.key === 'ArrowLeft' || event.key === 'ArrowRight' || event.key === 'z' || event.key === 'x') {
+            keyIsPressed = true;
+            sendMessage('forward', event.key);
+        }
+    }
+});
+
+document.addEventListener('keyup', function(event) {
+    if (keyboardControlActive) {
+        // Check for arrow keys
+        if (event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.key === 'ArrowLeft' || event.key === 'ArrowRight' || event.key === 'z' || event.key === 'x') {
+            keyIsPressed = false;
+            if(event.key !== 'z' && event.key !== 'x'){
+            sendMessage('break', event.key);
+            }
+        }
+    }
+
+});
+let numv1=0;
+function sendMessage(action, key) {
+    fetch('/api/control', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            action: action,
+            key: key,
+        }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        let numv2 = parseInt(data.message);
+        createArrowAnimation(numv1,numv2);
+        changeRotationAngle(numv2);
+        numv1=numv2;
+        console.log('Server response:', numv1);
+    })
+    .catch(error => {
+        console.error('Error sending message:', error);
+    });
+}
+
+</script>
+<!--scrolling control-->
+<script>
+    document.getElementById('b1').addEventListener('click', function() {
+        // Enable scrolling
+        document.body.style.overflow = 'auto';
+    });
+    document.getElementById('b2').addEventListener('click', function() {
+        // Enable or disable scrolling based on the current state
+        document.body.style.overflow = document.body.style.overflow === 'hidden' ? 'auto' : 'hidden';
+    });
+
+    // Prevent default scrolling behavior on arrow key presses
+    window.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowUp' || e.key === 'ArrowDown' || e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+            e.preventDefault();
+        }
+    });
+</script>
+<!--keyboard-->
+<script>
+    window.addEventListener('keyup', arrowUp)
+window.addEventListener('keydown', arrowDown)
+
+function arrowDown(e) {
+  const key = document.querySelector(`.arrow-key[data-key="${e.keyCode}"]`);
+  key.classList.add('press')
+}
+function arrowUp(e) {
+  const key = document.querySelector(`.arrow-key[data-key="${e.keyCode}"]`);
+   key.classList.remove('press')
+}
+</script>
+<!--video refresh-->
+ <script>
+        // Function to refresh the image every second
+        function refreshImage() {
+            var img = document.getElementById('videoStream');
+            var timestamp = new Date().getTime(); // Get current timestamp
+            img.src = "http://172.168.1.214/?" + timestamp; // Append timestamp as query parameter to ensure browser reloads image
+        }
+
+        // Refresh the image every second
+        setInterval(refreshImage, 100000);
+    </script>
+<!--compass-->
+<script>
+	function changeRotationAngle(angle) {
+  	var arrowsElement = document.querySelector('.pl__arrows');
+  	arrowsElement.style.transform = 'rotate(' + angle + 'deg)';
+	}
+    function createArrowAnimation(x, y) {
+    // Create a style element to hold the dynamic animation
+    var style = document.createElement('style');
+    style.type = 'text/css';
+    // Define the keyframes with dynamic values
+    var keyframes = `@keyframes arrows42 {
+        from {
+            transform: rotate(${x}deg);
+        }
+        to {
+            transform: rotate(${y}deg);
+            animation-timing-function: steps(1);
+        }
+    }`;
+    // Add keyframes to the style element
+    style.appendChild(document.createTextNode(keyframes));
+    // Add style element to the document's head
+    document.head.appendChild(style);
+}
+
+// Example usage:
+// Pass desired values of x and y to the function
+
+</script>
+</body>
+</html>
