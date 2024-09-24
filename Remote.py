@@ -19,7 +19,7 @@ def process_audio():
     for i in ll:
         if (i in audio_data1):
             acess = 0
-    ad2="";
+    ad2=""
     if (acess==0):
         ky = ["forward", "backward", "left", "right","break","on","of","off"]
         for i in ky:
