@@ -7,7 +7,7 @@ global url
 url = "http://172.168.2.32/post"
 @app.route("/")
 def home1():
-    return render_template("kufbsdf.html")
+    return render_template("Basic_control.html")
 
 @app.route('/process_audio', methods=['POST'])
 def process_audio():
