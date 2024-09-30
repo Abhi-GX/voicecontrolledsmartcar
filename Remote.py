@@ -75,8 +75,8 @@ def control():
 @app.route('/infotration', methods=['POST'])
 def receive_data():
     data = request.get_json()
-    # Do something with the data
-    print(data)
+    print("remote data is recieved",data)
+
     return jsonify({'success': True})
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000,debug=True)
