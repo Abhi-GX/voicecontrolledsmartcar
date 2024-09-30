@@ -15,19 +15,15 @@ function speakText(text) {
        const synth = window.speechSynthesis;
         const utterance = new SpeechSynthesisUtterance(text);
 
-        // Set the isSpeaking variable when speaking starts
         utterance.onstart = function() {
             isSpeaking = true;
 
-            // Mute the microphone when Web Speech API is speaking
             if (isRecording) {
                 speechRecognition.stop();
             }
         };
-        // Clear the isSpeaking variable when speaking ends
         utterance.onend = function() {
             isSpeaking = false;
-            // Unmute the microphone when Web Speech API speaking ends
             if (isRecording) {
                 speechRecognition.start();
             }
