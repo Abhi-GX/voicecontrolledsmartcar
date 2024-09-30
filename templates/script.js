@@ -77,7 +77,7 @@ $(document).ready(function() {
             isRecording = false;
         });
 
-        // Optionally, you can add a confirmation dialog before stopping recording
+        //  confirmation dialog before stopping recording
         window.onbeforeunload = function() {
             if (isRecording) {
                 return 'Are you sure you want to stop recording?';
@@ -122,8 +122,8 @@ $(document).ready(function() {
             let barHeight = dataArray[i];
 
             if (isSpeaking) {
-                // If Web Speech API is speaking, set bar height to a fixed value or adjust as needed
-                barHeight = 50; // Example: Set a fixed height during speech
+                
+                barHeight = 50; //Setting fixed height during speech
             }
 
             ctx.fillStyle = `#6BD6E1`;
@@ -133,7 +133,6 @@ $(document).ready(function() {
 
         requestAnimationFrame(visualize);
     }
-    // Call the initial visualization
     visualize();
 
     });
